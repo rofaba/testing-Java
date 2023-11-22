@@ -5,8 +5,9 @@ import javax.persistence.*;
 @Table(name = "domicilios")
 public class Domicilio {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "domicilio_id_seq")
     private Long id;
+
     @Column
     private String calle;
     @Column
@@ -26,7 +27,13 @@ public class Domicilio {
         this.provincia = provincia;
     }
 
-
+    public Domicilio(Long id, String calle, Integer numero, String localidad, String provincia) {
+        this.id = id;
+        this.calle = calle;
+        this.numero = numero;
+        this.localidad = localidad;
+        this.provincia = provincia;
+    }
 
     public Long getId() {
         return id;

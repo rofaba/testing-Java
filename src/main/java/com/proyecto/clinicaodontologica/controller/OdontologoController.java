@@ -7,11 +7,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
+//Tested on Postman OK.
 @RestController
 @RequestMapping("/odontologos")
 public class OdontologoController {
-    //relacion de asociacion con el servicio
     @Autowired
     private OdontologoService odontologoService;
 
@@ -38,7 +37,7 @@ public class OdontologoController {
     public ResponseEntity<Optional<Odontologo>> buscarPorID(@PathVariable Long id){
         return ResponseEntity.ok(odontologoService.buscarPorId(id));
     }
-    @GetMapping("/busqueda/{matricula}")
+    @GetMapping("/buscar/{matricula}")
     public ResponseEntity<Optional<Odontologo>> buscarPorMatricula(@PathVariable String matricula){
         return ResponseEntity.ok(odontologoService.buscarPorMatricula(matricula));
     }

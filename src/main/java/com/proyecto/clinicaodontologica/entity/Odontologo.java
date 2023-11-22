@@ -11,7 +11,7 @@ import java.util.Set;
 @Table(name = "odontologos")
 public class Odontologo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "odontologo_id_seq")
     private Long id;
     @Column
     private String matricula;

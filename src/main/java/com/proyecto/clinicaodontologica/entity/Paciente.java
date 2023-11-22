@@ -1,7 +1,6 @@
 package com.proyecto.clinicaodontologica.entity;
 
-import com.proyecto.clinicaodontologica.entity.Turno;
-import com.proyecto.clinicaodontologica.entity.Domicilio;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -11,8 +10,9 @@ import java.util.Set;
 @Entity
 @Table(name = "pacientes")
 public class Paciente {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "paciente_id_seq")
     private Long id;
     @Column
     private String nombre;

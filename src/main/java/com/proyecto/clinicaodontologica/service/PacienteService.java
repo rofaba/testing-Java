@@ -24,7 +24,6 @@ public class PacienteService {
     }
 
 
-
     public void actualizarPaciente(Paciente paciente){
 
         pacienteRepository.save(paciente);
@@ -37,7 +36,7 @@ public class PacienteService {
 
         return pacienteRepository.findById(id);
     }
-    public Optional<Paciente> buscarPorCorreo(String email){
+    public Optional<Paciente> buscarEmail(String email){
         return pacienteRepository.findByEmail(email);
     }
     public List<Paciente> listarTodos(){
