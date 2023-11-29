@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <title>Pacientes</title>
+  <title>Turnos</title>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <style>
-        /* Estilos CSS aquí */
 
         body {
             background-color: #f8f9fa;
@@ -54,7 +53,7 @@
 <body>
 
 <div class="container clinic-header">
-  <h1>Clínica Odontológica Springfield - Pacientes</h1>
+  <h1>Clínica Odontológica Springfield - Turnos</h1>
 </div>
 
 <div class="container text-center">
@@ -63,38 +62,34 @@
       <a class="nav-link" href="../../index.html"> Home</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="pacienteListar.html">Listado de Pacientes</a>
+      <a class="nav-link" href="turnoListar.html">Listado de Turnos</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="pacienteGuardar.html">Guardar Paciente</a>
+      <a class="nav-link" href="turnoGuardar.html">Guardar Turno</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="pacienteEliminar.html">Eliminar Paciente</a>
+      <a class="nav-link" href="turnoEliminar.html">Eliminar Turno</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="pacienteActualizar.html">Actualizar Paciente</a>
+      <a class="nav-link" href="turnoActualizar.html">Actualizar Paciente</a>
     </li>
   </ul>
   <hr>
 
   <div class="container">
-    <h2>Listado de Pacientes</h2>
+    <h2>Listado de Turnos</h2>
     <table class="table">
       <thead>
       <tr>
         <th>ID</th>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Cédula</th>
-        <th>Fecha de Ingreso</th>
-        <th>Domicilio</th>
-        <th>Email</th>
-
-        </tr>
+        <th>Paciente ID</th>
+        <th>Odontólogo ID</th>
+        <th>Fecha Turno</th>
+      </tr>
 
       </tr>
       </thead>
-      <tbody id="pacientes_list">
+      <tbody id="turnos_list">
       </tbody>
     </table>
   </div>
@@ -106,6 +101,6 @@
     </div>
   </div>
 </footer>
-<script type="text/javascript" src="../odontologos/js/odontologosGet.js"></script>
+<script type="text/javascript" src="../../js/turnosGet.js"></script>
 </body>
 </html>

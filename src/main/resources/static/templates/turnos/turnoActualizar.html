@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <title>Pacientes</title>
+  <title>Turnos</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <style>
-        /* Estilos CSS aquí */
-
         body {
             background-color: #f8f9fa;
             margin-top: 30px;
@@ -20,7 +18,7 @@
             padding: 15px;
         }
 
-        /* Estilos para la barra de navegación */
+
         .nav-pills .nav-link {
             color: #1c1f22; /* Color del texto */
             font-size: 18px; /* Tamaño de fuente */
@@ -30,13 +28,14 @@
             color: #007bff; /* Color del texto al pasar el cursor */
         }
 
-        /* Estilos para el formulario de eliminar odontólogo */
+        /* Estilos para el formulario de actualización */
         .form-group label {
+            background-color: #cfe2ff;
             color: #343a40; /* Color del texto */
             font-weight: bold; /* Negrita */
         }
 
-        #btn-delete-odontologo {
+        #btn-update-odontologo {
             margin-top: 10px; /* Espacio superior */
         }
 
@@ -46,7 +45,7 @@
             display: none; /* Ocultar inicialmente */
         }
 
-     /* Cambio de color de fondo del formulario */
+        /* Cambio de color de fondo del formulario */
         .form-container {
             background-color: #cfe2ff; /* Azul claro */
             padding: 20px;
@@ -71,37 +70,52 @@
 <div class="container">
   <ul class="nav nav-pills">
     <li class="nav-item">
-      <a class="nav-link" href="../../index.html"> Home</a>
+      <a class="nav-link" href="../../index.html">Home</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="pacienteListar.html">Listado de Pacientes</a>
+      <a class="nav-link" href="turnoListar.html">Listado de Turnos</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="pacienteGuardar.html">Guardar Paciente</a>
+      <a class="nav-link" href="turnoGuardar.html">Guardar Turno</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="pacienteEliminar.html">Eliminar Paciente</a>
+      <a class="nav-link" href="turnoEliminar.html">Eliminar Turno</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="pacienteActualizar.html">Actualizar Paciente</a>
+      <a class="nav-link" href="turnoActualizar.html">Actualizar Turno</a>
     </li>
   </ul>
   <hr>
 
   <div class="row justify-content-center">
-    <div class="col-sm-7 form-container">
-      <h3>Eliminar Paciente</h3>
-      <form id="delete_paciente">
+    <div class="col-md-7 form-container">
+      <h3 style="color: #343a40">Actualizar Turno</h3>
+      <form id="update_turno">
         <div class="form-group">
-          <label class="control-label" for="pacienteID">Paciente a ser eliminado:</label>
-          <input type="text" class="form-control" id="pacienteID"
-                 placeholder="Ingrese el ID del paciente a eliminar"
-                 name="pacienteID" required>
+          <label class="control-label" for="turno_id">ID:</label>
+          <input type="text" class="form-control" id="turno_id"
+                 placeholder="Ingrese el ID del turno a actualizar"
+                 name="turno_id" required>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="paciente_id">Paciente ID:</label>
+          <input type="text" class="form-control" id="paciente_id" name="paciente_id" required>
         </div>
 
-        <button type="submit" class="btn btn-danger" id="btn-delete-paciente">Eliminar</button>
+        <div class="form-group">
+          <label class="control-label" for="odontologo_id">Odontólogo ID:</label>
+          <input type="text" class="form-control" id="odontologo_id" name="odontologo_id" required>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="fecha">Fecha Turno:</label>
+          <input type="text" class="form-control" id="fecha" name="fecha" required>
+        </div>
+
+        <button type="submit" class="btn btn-danger"
+                id="btn-update-turno">Actualizar</button>
       </form>
-      <div id="response" style="display:none; margin-top:10px"></div>
+      <div id="response"></div>
     </div>
   </div>
 </div>
@@ -112,8 +126,9 @@
     </div>
   </div>
 </footer>
-<script type="text/javascript" src="../odontologos/js/odontologoDelete.js"></script>
+<script type="text/javascript" src="../odontologos/js/odontologoUpdate.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
 </body>
 </html>

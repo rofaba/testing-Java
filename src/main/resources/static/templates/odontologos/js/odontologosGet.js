@@ -3,13 +3,15 @@ window.addEventListener('load', function () {
 });
 
 function listarOdontologos() {
-   const url = '/odontologos/listar';
+   const url ='/odontologos/todos';
+
     fetch(url)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Error al obtener odontólogos. Por favor, inténtalo nuevamente.');
             }
-            return response.json();
+
+              return response.json();
         })
         .then(odontologos => {
             const odontologosList = document.getElementById('odontologos_list');
@@ -21,7 +23,7 @@ function listarOdontologos() {
                     <td>${odontologo.matricula}</td>
                     <td>${odontologo.nombre}</td>
                     <td>${odontologo.apellido}</td>
-                    <!-- Agrega más celdas según sea necesario -->
+
                 `;
                 odontologosList.appendChild(row);
             });

@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <title>Pacientes</title>
+  <title>Turnos</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <style>
-        /* Estilos CSS aquí */
 
         body {
             background-color: #f8f9fa;
@@ -30,13 +29,13 @@
             color: #007bff; /* Color del texto al pasar el cursor */
         }
 
-        /* Estilos para el formulario de eliminar odontólogo */
+        /* Estilos para el formulario de guardar odontólogo */
         .form-group label {
             color: #343a40; /* Color del texto */
             font-weight: bold; /* Negrita */
         }
 
-        #btn-delete-odontologo {
+        #btn-save-odontologo {
             margin-top: 10px; /* Espacio superior */
         }
 
@@ -46,26 +45,25 @@
             display: none; /* Ocultar inicialmente */
         }
 
-     /* Cambio de color de fondo del formulario */
+          /* Cambio de color de fondo del formulario */
         .form-container {
             background-color: #cfe2ff; /* Azul claro */
             padding: 20px;
             border-radius: 5px;
         }
-          .clinic-footer {
-            background-color: #007bff;
-            color: #ffffff;
-            text-align: center;
-            align-content: center;
-            margin-top: 30px;
-
-        }
+            .clinic-footer {
+                background-color: #007bff;
+                color: #ffffff;
+                text-align: center;
+                align-content: center;
+                margin-top: 30px;
+            }
     </style>
 </head>
 <body>
 
 <div class="container clinic-header">
-  <h1>Clínica Odontológica Springfield - Pacientes</h1>
+  <h1>Clínica Odontológica Springfield - Turnos</h1>
 </div>
 
 <div class="container">
@@ -74,33 +72,50 @@
       <a class="nav-link" href="../../index.html"> Home</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="pacienteListar.html">Listado de Pacientes</a>
+      <a class="nav-link" href="turnoListar.html">Listado de Turnos</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="pacienteGuardar.html">Guardar Paciente</a>
+      <a class="nav-link" href="turnoGuardar.html">Guardar Turno</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="pacienteEliminar.html">Eliminar Paciente</a>
+      <a class="nav-link" href="turnoEliminar.html">Eliminar Turno</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="pacienteActualizar.html">Actualizar Paciente</a>
+      <a class="nav-link" href="turnoActualizar.html">Actualizar Turno</a>
     </li>
   </ul>
   <hr>
 
   <div class="row justify-content-center">
     <div class="col-sm-7 form-container">
-      <h3>Eliminar Paciente</h3>
-      <form id="delete_paciente">
-        <div class="form-group">
-          <label class="control-label" for="pacienteID">Paciente a ser eliminado:</label>
-          <input type="text" class="form-control" id="pacienteID"
-                 placeholder="Ingrese el ID del paciente a eliminar"
-                 name="pacienteID" required>
-        </div>
 
-        <button type="submit" class="btn btn-danger" id="btn-delete-paciente">Eliminar</button>
-      </form>
+      <h3 class="justify-content-center">Guardar turno nuevo</h3>
+
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-9 form-container">
+            <h4>Formulario de Ingreso</h4>
+            <hr>
+            <form id="save-turno" action="/ruta back para guardar " method="post">
+              <div class="form-group">
+                <label class="control-label" for="paciente_id">Paciente ID:</label>
+                <input type="text" class="form-control" id="paciente_id" name="paciente_id" required>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label" for="odontologo_id">Odontólogo ID:</label>
+                <input type="text" class="form-control" id="odontologo_id" name="odontologo_id" required>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label" for="fecha">Fecha Turno:</label>
+                <input type="text" class="form-control" id="fecha" name="fecha" required>
+              </div>
+              <button type="submit" class="btn btn-primary" id="btn-save-turno">Guardar Turno</button>
+            </form>
+          </div>
+        </div>
+      </div>
       <div id="response" style="display:none; margin-top:10px"></div>
     </div>
   </div>
@@ -112,7 +127,7 @@
     </div>
   </div>
 </footer>
-<script type="text/javascript" src="../odontologos/js/odontologoDelete.js"></script>
+<script type="text/javascript" src="../odontologos/js/odontologoPost.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
