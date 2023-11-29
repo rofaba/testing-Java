@@ -49,6 +49,13 @@ public class Turno {
         return paciente;
     }
 
+    public Long getPacienteId() {
+        return paciente.getId();
+    }
+    public Long getOdontologoId() {
+        return odontologo.getId();
+    }
+
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
     }
