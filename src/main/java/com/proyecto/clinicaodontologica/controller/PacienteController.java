@@ -42,7 +42,8 @@ public class PacienteController {
         }else{
             return ResponseEntity.badRequest().body("paciente no encontrado");
         }
-    }@GetMapping("/buscarCorreo/{email}")
+    }
+    @GetMapping("/buscarCorreo/{email}")
     public ResponseEntity<Paciente> buscarEmail(@PathVariable String email){
         Optional<Paciente> pacienteBuscado = pacienteService.buscarEmail(email);
         if(pacienteBuscado.isPresent()) {
@@ -52,4 +53,14 @@ public class PacienteController {
             return ResponseEntity.notFound().build();
         }
     }
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<String> eliminarPaciente(@PathVariable Long id) {
+        try {
+            pacienteService.eliminarPaciente(id);
+            return ResponseEntity.ok("Paciente eliminado exitosamente");
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body("Error al eliminar el paciente");
+        }
+    }
 }
+

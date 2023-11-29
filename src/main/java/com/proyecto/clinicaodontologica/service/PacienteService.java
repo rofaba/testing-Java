@@ -32,6 +32,7 @@ public class PacienteService {
 
         pacienteRepository.deleteById(id);
     }
+
     public Optional<Paciente> buscarPacientePorID(Long id){
 
         return pacienteRepository.findById(id);
