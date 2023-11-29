@@ -3,7 +3,7 @@ window.addEventListener('load', function () {
         const formulario = document.querySelector('#delete_odontologo');
         let id = document.querySelector('#odontologoID').value;
 
-        const url = '/odontologos' + '/' + 'eliminar' + '/' + id;
+        const url = '/odontologos/eliminar/' + id;
         const settings = {
             method: 'DELETE'
         };

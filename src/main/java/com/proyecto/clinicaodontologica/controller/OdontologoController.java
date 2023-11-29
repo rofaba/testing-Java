@@ -1,4 +1,6 @@
 package com.proyecto.clinicaodontologica.controller;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.proyecto.clinicaodontologica.dto.OdontologoDTO;
 import com.proyecto.clinicaodontologica.entity.Odontologo;
 import com.proyecto.clinicaodontologica.service.OdontologoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 //Tested on Postman OK.
 @RestController
 @RequestMapping("/odontologos")
@@ -14,13 +18,19 @@ public class OdontologoController {
     @Autowired
     private OdontologoService odontologoService;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    @GetMapping("/todos")
+    public ResponseEntity<List<OdontologoDTO>> buscarTodos() {
+        List<OdontologoDTO> odontologosDTO = odontologoService.listarTodos().stream()
+                .map(odontologo -> objectMapper.convertValue(odontologo, OdontologoDTO.class))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(odontologosDTO);
+    }
     @PostMapping
     public ResponseEntity<Odontologo> registrarOdontologo(@RequestBody Odontologo odontologo){
         return ResponseEntity.ok(odontologoService.registrarOdontologo(odontologo));
-    }
-    @GetMapping("/todos")
-    public ResponseEntity<List<Odontologo>> buscarTodos(){
-        return ResponseEntity.ok(odontologoService.listarTodos());
     }
     @PutMapping
     public ResponseEntity<String> actualizarOdontologo(@RequestBody Odontologo odontologo){
@@ -41,7 +51,7 @@ public class OdontologoController {
     public ResponseEntity<Optional<Odontologo>> buscarPorMatricula(@PathVariable String matricula){
         return ResponseEntity.ok(odontologoService.buscarPorMatricula(matricula));
     }
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<String> eliminarOdontologo(@PathVariable Long id){
         Optional<Odontologo> odontologoBuscado= odontologoService.buscarPorId(id);
         if(odontologoBuscado.isPresent()){
