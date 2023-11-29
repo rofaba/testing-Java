@@ -12,7 +12,7 @@ window.addEventListener('load', function () {
             apellido: document.querySelector('#apellido').value,
         };
 
-        const url = '/odontologos'; // Replace this URL with the correct logic in your backend
+        const url = '/odontologos';
         const settings = {
             method: 'POST',
             headers: {
