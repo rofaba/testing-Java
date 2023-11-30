@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -61,5 +63,35 @@ public class TurnoController {
         } else {
             return ResponseEntity.badRequest().body("Error al intentar eliminar el turno.");
         }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> actualizarTurno(@PathVariable Long id, @RequestBody Turno turno) {
+        Optional<Turno> turnoBuscado = turnoService.buscarTurnoPorId(id);
+
+        if (turnoBuscado.isPresent()) {
+            Turno turnoActualizado = turnoBuscado.get();
+            turnoActualizado.setFechaTurno(turno.getFechaTurno());
+            turnoActualizado.setPaciente(turno.getPaciente());
+            turnoActualizado.setOdontologo(turno.getOdontologo());
+
+            turnoService.guardarTurnoConDetalles(turnoActualizado);
+            return ResponseEntity.ok("Turno actualizado exitosamente");
+        } else {
+            return ResponseEntity.badRequest().body("Error al intentar actualizar el turno.");
+        }
+    }
+
+    @GetMapping("/todos")
+    public ResponseEntity<?> listarTodosLosTurnos() {
+        List<Turno> turnos = turnoService.buscarTodosLosTurnos();
+        List<TurnoDTO> turnosDTO = new ArrayList<>();
+
+        for (Turno turno : turnos) {
+            TurnoDTO turnoDTO = turnoService.turnoATurnoDTOConDetalles(turno);
+            turnosDTO.add(turnoDTO);
+        }
+
+        return ResponseEntity.ok(turnosDTO);
     }
 }

@@ -9,6 +9,7 @@ import com.proyecto.clinicaodontologica.repository.TurnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 @Service
 public class TurnoService {
@@ -55,7 +56,6 @@ public class TurnoService {
         pacienteDTO.setId(paciente.getId());
         pacienteDTO.setNombre(paciente.getNombre());
         pacienteDTO.setApellido(paciente.getApellido());
-        // Añadir más detalles según sea necesario
         turnoDTO.setPaciente(pacienteDTO);
 
         // Construir OdontologoDTO con detalles
@@ -64,10 +64,13 @@ public class TurnoService {
         odontologoDTO.setId(odontologo.getId());
         odontologoDTO.setNombre(odontologo.getNombre());
         odontologoDTO.setApellido(odontologo.getApellido());
-        // Añadir más detalles según sea necesario
         turnoDTO.setOdontologo(odontologoDTO);
 
         return turnoDTO;
+    }
+
+    public List<Turno> buscarTodosLosTurnos() {
+        return turnoRepository.findAll();
     }
 }
 
