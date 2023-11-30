@@ -22,7 +22,7 @@ console.log("Script ejecutándose...");
 
          const row = document.createElement('tr');
          row.innerHTML = `
-              <td>${id}</td>
+           <td>${id}</td>
            <td>${paciente.id}</td>
            <td>${odontologo.id}</td>
            <td>${fechaTurno}</td>

@@ -65,23 +65,16 @@ public class TurnoController {
         }
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<?> actualizarTurno(@PathVariable Long id, @RequestBody Turno turno) {
-        Optional<Turno> turnoBuscado = turnoService.buscarTurnoPorId(id);
-
-        if (turnoBuscado.isPresent()) {
-            Turno turnoActualizado = turnoBuscado.get();
-            turnoActualizado.setFechaTurno(turno.getFechaTurno());
-            turnoActualizado.setPaciente(turno.getPaciente());
-            turnoActualizado.setOdontologo(turno.getOdontologo());
-
-            turnoService.guardarTurnoConDetalles(turnoActualizado);
-            return ResponseEntity.ok("Turno actualizado exitosamente");
-        } else {
-            return ResponseEntity.badRequest().body("Error al intentar actualizar el turno.");
+    @PutMapping
+    public ResponseEntity<String> actualizarPaciente(@RequestBody Turno turno){
+        Optional<Paciente> turnoBuscado = pacienteService.buscarPacientePorID(turno.getId());
+        if(turnoBuscado.isPresent()) {
+            turnoService.actualizarTurno(turno);
+            return ResponseEntity.ok("paciente actualizado");
+        }else{
+            return ResponseEntity.badRequest().body("paciente no encontrado");
         }
     }
-
     @GetMapping("/todos")
     public ResponseEntity<?> listarTodosLosTurnos() {
         List<Turno> turnos = turnoService.buscarTodosLosTurnos();
