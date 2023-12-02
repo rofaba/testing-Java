@@ -23,7 +23,7 @@ public class DatosInicialesSecurity implements ApplicationRunner {
         String passCifrado= cifrador.encode(passSinCifrar);
         System.out.println("password: "+passCifrado);
         Usuario usuarioInsertar= new Usuario("Jorgito","jpereyra00",
-                "jorge.pereyra@digitalhouse.com",passCifrado, UsuarioRole.ROLE_USER);
+                "jorge.pereyra@digitalhouse.com",passCifrado, UsuarioRole.ROLE_ADMIN);
         usuarioRepository.save(usuarioInsertar);
 
     }

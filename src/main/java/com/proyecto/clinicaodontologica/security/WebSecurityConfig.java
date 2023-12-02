@@ -50,6 +50,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
                 .and()
+                .exceptionHandling().accessDeniedPage("/templates/acceso-denegado.html")
+                .and()
                 .formLogin()
                 .and()
                 .logout();
