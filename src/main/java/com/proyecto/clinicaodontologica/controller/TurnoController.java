@@ -3,6 +3,7 @@ import com.proyecto.clinicaodontologica.dto.TurnoDTO;
 import com.proyecto.clinicaodontologica.entity.Odontologo;
 import com.proyecto.clinicaodontologica.entity.Paciente;
 import com.proyecto.clinicaodontologica.entity.Turno;
+import com.proyecto.clinicaodontologica.exception.ResourceNotFoundException;
 import com.proyecto.clinicaodontologica.service.OdontologoService;
 import com.proyecto.clinicaodontologica.service.PacienteService;
 import com.proyecto.clinicaodontologica.service.TurnoService;
@@ -54,16 +55,18 @@ public class TurnoController {
         }
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminarTurno(@PathVariable Long id) {
-        Optional<Turno> turnoBuscado = turnoService.buscarTurnoPorId(id);
+    public ResponseEntity<?> eliminarTurno(@PathVariable Long id) throws
+            ResourceNotFoundException {
 
-        if (turnoBuscado.isPresent()) {
-            turnoService.eliminarTurno(id);
-            return ResponseEntity.ok("Turno eliminado exitosamente");
+        Optional<Turno> turnoBuscado = turnoService.buscarTurnoPorId(id);
+        if (turnoBuscado.isEmpty()) {
+            throw new ResourceNotFoundException("Turno no encontrado, no se pudo eliminar.");
         } else {
-            return ResponseEntity.badRequest().body("Error al intentar eliminar el turno.");
+            turnoService.eliminarTurno(id);
+            return ResponseEntity.ok("Se eliminó con exito");
         }
     }
+
 
     @PutMapping
     public ResponseEntity<String> actualizarPaciente(@RequestBody Turno turno){

@@ -2,6 +2,7 @@ package com.proyecto.clinicaodontologica.controller;
 import com.proyecto.clinicaodontologica.entity.Domicilio;
 import com.proyecto.clinicaodontologica.entity.Odontologo;
 import com.proyecto.clinicaodontologica.entity.Paciente;
+import com.proyecto.clinicaodontologica.exception.ResourceNotFoundException;
 import com.proyecto.clinicaodontologica.service.DomicilioService;
 import com.proyecto.clinicaodontologica.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,13 +55,14 @@ public class PacienteController {
         }
     }
     @DeleteMapping("/eliminar/{id}")
-    public ResponseEntity<String> eliminarPaciente(@PathVariable Long id) {
-        try {
-            pacienteService.eliminarPaciente(id);
-            return ResponseEntity.ok("Paciente eliminado exitosamente");
-        } catch (Exception e) {
-            return ResponseEntity.internalServerError().body("Error al eliminar el paciente");
-        }
+    public ResponseEntity<String> eliminarPaciente(@PathVariable Long id) throws
+            ResourceNotFoundException {
+            Optional<Paciente> pacienteBuscado= pacienteService.buscarPacientePorID(id);
+            if(pacienteBuscado.isEmpty()){
+                throw new ResourceNotFoundException("Paciente no encontrado, no se pudo eliminar.");
+        } else{
+                pacienteService.eliminarPaciente(id);
+                return ResponseEntity.ok("Se eliminó con exito");
+            }
     }
 }
-

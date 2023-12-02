@@ -16,15 +16,20 @@ console.log("Script ejecutándose...");
             console.log(odontologos); // Agrega esta línea para verificar los datos recibidos
             const odontologosList = document.getElementById('odontologos_list');
             odontologosList.innerHTML = '';
-           odontologos.forEach(odontologo => {
+            odontologos.forEach(odontologo => {
              const row = document.createElement('tr');
              row.innerHTML = `
-               <td>${odontologo.id}</td>
-               <td>${odontologo.nombre}</td>
-               <td>${odontologo.apellido}</td>
-             `;
+                <td>${odontologo.id}</td>
+                <td>${odontologo.matricula}</td>
+                <td>${odontologo.nombre}</td>
+                <td>${odontologo.apellido}</td>
+                <td>
+
+           `;
+
              odontologosList.appendChild(row);
            });
+
         })
         .catch(error => {
             console.error('Error al obtener odontólogos:', error.message);
